@@ -10,3 +10,4 @@
 
 1. [浏览器有哪些可以说说的内容（事件模型、请求、响应、缓存 blahblah...）🔊](https://github.com/kiki1027/memos/issues/2)
 2. [Promise用了n年却还没看过A+规范 👿](https://github.com/kiki1027/memos/issues/4)
+3. [对 JavaScript 变量你了解多少 🧘🏻‍♀️](https://github.com/kiki1027/memos/issues/5)
