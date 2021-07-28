@@ -2,7 +2,7 @@
 
 [个人掘金主页](https://juejin.cn/user/2752832849071262/posts) 👣
 
-# memos
+# notes
 
 - [x] 2021/06/25 [🤱🏻保姆级教程 | 浏览器的事件循环(EventLoop) 篇🕵🏻‍♂️](https://github.com/kiki1027/memos/issues/1) 🎸 
 
@@ -17,3 +17,4 @@
 > [汇总请点这里](https://github.com/kiki1027/memos/issues?q=is%3Aopen+is%3Aissue+label%3Agraph)
 
 1. [HTTP缓存相关图例](https://github.com/kiki1027/memos/issues/6)
+2. [用户输入URL到页面展示会经历哪些过程相关图例](https://github.com/kiki1027/memos/issues/7)
