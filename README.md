@@ -21,3 +21,18 @@
 1. [HTTP缓存](https://github.com/kiki1027/memos/issues/6)
 2. [用户输入URL到页面展示会经历哪些过程](https://github.com/kiki1027/memos/issues/7)
 3. [建立TCP连接的三次握手](https://github.com/kiki1027/memos/issues/8)
+
+# 我遇过的问题
+
+> 所有关联issue汇总 [请点这里](https://github.com/kiki1027/memos/labels/issue)
+
+1. 前端性能优化（webpack打包方向）
+2. hmr热更新失效
+3. antd table 性能（虚拟列表实现）
+4. antd table + form 长表单性能优化
+5. npm scripts 实现 git 自动化流程
+6. antd form + table 出现 fixed columns 行高不会自适应
+7. 前端权限架构重构（路由权限+登录权限）
+8. 页面使用 redux 重构（一个页面三个 table 互相依赖）
+9. 使用 setInterval 定时接收消息这个方式好么？有何改进方法
+10. 带有内置控件的控件模板该如何设计？
