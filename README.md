@@ -26,9 +26,9 @@
 2. [用户输入URL到页面展示会经历哪些过程](https://github.com/kiki1027/memos/issues/7)
 3. [建立TCP连接的三次握手](https://github.com/kiki1027/memos/issues/8)
 
-# 那些年，我思考过的问题
+# 那些年，我思考过的问题们
 
-> 所有关联issue汇总 [请点这里](https://github.com/kiki1027/memos/labels/issue)，这里只列举我觉得值得一提的问题
+> 所有关联issue汇总 [请点这里](https://github.com/kiki1027/memos/labels/question)，这里只列举我觉得值得一提的问题
 
 1. 前端性能优化（webpack打包方向）
 2. hmr热更新失效
