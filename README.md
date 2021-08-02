@@ -4,7 +4,7 @@
 
 # notes
 
-- [x] 2021/06/25 [🤱🏻保姆级教程 | 浏览器的事件循环(EventLoop) 篇🕵🏻‍♂️](https://github.com/kiki1027/memos/issues/1) 🎸 
+- [x] 2021/06/25 [🤱🏻 保姆级教程 | 浏览器的事件循环(EventLoop) 篇🕵🏻‍♂️](https://github.com/kiki1027/memos/issues/1) 🎸 
 
 # 想到什么写什么
 
@@ -42,3 +42,4 @@
 10. 带有内置控件的控件模板该如何设计？
 11. 前端领域模型思考
 12. 前端开发路径规划 + 前端物料市场沉淀
+13. antd table + form + tree 展开收起更新失效
