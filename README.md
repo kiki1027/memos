@@ -22,7 +22,7 @@
 2. [用户输入URL到页面展示会经历哪些过程](https://github.com/kiki1027/memos/issues/7)
 3. [建立TCP连接的三次握手](https://github.com/kiki1027/memos/issues/8)
 
-# 我遇过的问题
+# 我实践过的值得一提的问题
 
 > 所有关联issue汇总 [请点这里](https://github.com/kiki1027/memos/labels/issue)
 
