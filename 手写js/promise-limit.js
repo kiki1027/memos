@@ -33,14 +33,13 @@ class PromiseQueue {
       return;
     }
     // 并发量判断
-    var { task: todoTask } = this.todoQueue
+    const { task: todoTask } = this.todoQueue
       .sort((a, b) => b.priority - a.priority)
       .shift();
     // 是否存在待执行任务
     // 当前占用并发量+1
     this.currentCount++;
-    // console.log(this.currentCount);
-    var promise = todoTask();
+    const promise = todoTask();
     promise.then(this.finish.bind(this)).catch(this.finish.bind(this));
   }
 
@@ -52,9 +51,9 @@ class PromiseQueue {
   }
 }
 
-var queue = new PromiseQueue({ concurrency: 3 });
+const queue = new PromiseQueue({ concurrency: 3 });
 
-var promiseCreator = function (options = {}) {
+const promiseCreator = function (options = {}) {
   return new Promise((resolve, reject) => {
     console.log(options.id + " start ");
     setTimeout(function () {
@@ -64,7 +63,7 @@ var promiseCreator = function (options = {}) {
   });
 };
 
-var options = [
+const options = [
   {
     id: 1,
     time: 300,
@@ -107,7 +106,7 @@ var options = [
   },
 ];
 
-var formatTask = function (option) {
+const formatTask = function (option) {
   return {
     task: () => promiseCreator(option),
     priority: option.priority,
