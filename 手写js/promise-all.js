@@ -12,7 +12,8 @@ function myAll(promiseList) {
     const resultList = []
     if (resultList.length > 0) {
       promiseList.forEach((promise) => {
-        promise.then(
+        // 防止不是promise就用Promise.resolve包一层，保证一定可以.then
+        Promise.resolve(promise).then(
           (val) => {
             resultList.push(val)
           },
