@@ -10,19 +10,21 @@
 function myAll(promiseList) {
   return new Promise((resolve, reject) => {
     const resultList = []
-    promiseList.forEach((promise) => {
-      promise.then(
-        (val) => {
-          resultList.push(val)
-        },
-        (error) => {
-          reject(error)
-        }
-      )
-    })
-    // all fulfilled 返回
-    if (promiseList.length === resultList.length) {
-      resolve(resultList)
+    if (resultList.length > 0) {
+      promiseList.forEach((promise) => {
+        promise.then(
+          (val) => {
+            resultList.push(val)
+          },
+          (error) => {
+            reject(error)
+          }
+        )
+      })
+      // all fulfilled 返回
+      if (promiseList.length === resultList.length) {
+        resolve(resultList)
+      }
     }
   })
 }
