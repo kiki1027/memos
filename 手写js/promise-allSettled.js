@@ -10,20 +10,22 @@ function myAllSettled(promiseList) {
   return new Promise((resolve, reject) => {
     const resultList = []
     if (resultList.length > 0) {
-      resultList.forEach((promise) => {
-        Promise.resolve(promise).then(
-          (val) => {
-            resultList.push({ status: STATUS_FULFILLED, value: val })
-          },
-          (err) => {
-            resultList.push({ status: STATUS_REJECTED, reason: err })
-          }
-        )
+      resultList.forEach((promise, i) => {
+        Promise.resolve(promise)
+          .then(
+            (val) => {
+              resultList[i] = { status: STATUS_FULFILLED, value: val }
+            },
+            (err) => {
+              resultList[i] = { status: STATUS_REJECTED, reason: err }
+            }
+          )
+          .finally(() => {
+            if (resultList.length === promiseList.length) {
+              return resolve(resultList)
+            }
+          })
       })
-    }
-
-    if (resultList.length === promiseList.length) {
-      return resolve(resultList)
     }
   })
 }
