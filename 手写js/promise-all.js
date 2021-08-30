@@ -15,17 +15,18 @@ function myAll(promiseList) {
         // 防止不是promise就用Promise.resolve包一层，保证一定可以.then
         Promise.resolve(promise).then(
           (val) => {
-            resultList.push(val)
+            // 保证promise结果和promiseList顺序一致
+            resultList[i] = val
+            // all fulfilled 返回
+            if (promiseList.length === resultList.length) {
+              resolve(resultList)
+            }
           },
           (error) => {
             reject(error)
           }
         )
       })
-      // all fulfilled 返回
-      if (promiseList.length === resultList.length) {
-        resolve(resultList)
-      }
     }
   })
 }
