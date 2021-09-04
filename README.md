@@ -26,6 +26,11 @@
 2. [用户输入 URL 到页面展示会经历哪些过程](https://github.com/kiki1027/memos/issues/7)
 3. [建立 TCP 连接的三次握手](https://github.com/kiki1027/memos/issues/8)
 4. [浏览器 yyds](https://github.com/kiki1027/memos/issues/21)
+5. [react 渲染过程图解（Fiber架构下React和浏览器之间是如何协作的）](https://github.com/kiki1027/memos/issues/27)
+
+# 脑图
+
+> 待上传...
 
 # 那些年，我思考过的问题们
 
