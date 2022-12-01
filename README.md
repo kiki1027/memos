@@ -51,3 +51,4 @@
 13. antd table + form + tree 展开收起更新失效
 14. next.js 遇到 seo 失败，爬虫抓取失败
 15. webpack 打包优化之后导致 css p+p index style 影响了其他组件
+16. 小程序版本机制与storage如何平滑兼容
