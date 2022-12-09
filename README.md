@@ -5,6 +5,7 @@
 # notes
 
 - [x] 2021/06/25 [🤱🏻 保姆级教程 | 浏览器的事件循环(EventLoop) 篇 🕵🏻‍♂️](https://github.com/kiki1027/memos/issues/1) 🎸
+- [x] 2022/12/02 [微信小程序版本机制与storage如何平滑兼容 🤙🏻](https://github.com/kiki1027/memos/issues/31)
 
 # issues
 
