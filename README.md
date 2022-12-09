@@ -6,6 +6,17 @@
 
 - [x] 2021/06/25 [🤱🏻 保姆级教程 | 浏览器的事件循环(EventLoop) 篇 🕵🏻‍♂️](https://github.com/kiki1027/memos/issues/1) 🎸
 - [x] 2022/12/02 [微信小程序版本机制与storage如何平滑兼容 🤙🏻](https://github.com/kiki1027/memos/issues/31)
+- [ ] TODO 🥳 [umi架构原理概要，你是不是跟我一样也看不懂](https://github.com/kiki1027/memos/issues/33)
+- [ ] TODO 🥳 [保姆级教程 | 微信H5如何配置微信sdk](https://github.com/kiki1027/memos/issues/32)
+- [ ] TODO 🥳 []()
+- [ ] TODO 🥳 []()
+- [ ] TODO 🥳 []()
+- [ ] TODO 🥳 []()
+- [ ] TODO 🥳 []()
+- [ ] TODO 🥳 []()
+- [ ] TODO 🥳 []()
+- [ ] TODO 🥳 []()
+- [ ] TODO 🥳 []()
 
 # issues
 
