@@ -9,7 +9,7 @@
 - [ ] TODO 🥳 [umi架构原理概要，你是不是跟我一样也看不懂](https://github.com/kiki1027/memos/issues/33)
 - [ ] TODO 🥳 [保姆级教程 | 微信H5如何配置微信sdk](https://github.com/kiki1027/memos/issues/32)
 - [ ] TODO 🥳 [你如何理解Why Hooks🤔？](https://github.com/kiki1027/memos/issues/34)
-- [ ] TODO 🥳 [什么是 CI/CD，初试前端部署](https://github.com/kiki1027/memos/issues/39)
+- [ ] TODO 🥳 [如何部署一个H5(OSS)项目](https://github.com/kiki1027/memos/issues/39)
 - [ ] TODO 🥳 []()
 - [ ] TODO 🥳 []()
 - [ ] TODO 🥳 []()
