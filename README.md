@@ -14,7 +14,7 @@
 - [ ] TODO 🥳 [vue 嵌套对象渲染出的视图(form) key设为index时 数据更新后为什么视图却没更新](https://github.com/kiki1027/memos/issues/37)
 - [ ] TODO 🥳 [v-model 和 :value+@change 的区别](https://github.com/kiki1027/memos/issues/38)
 - [ ] TODO 🥳 [微信小程序 调用openDocument时会出现阻塞前序代码的执行？](https://github.com/kiki1027/memos/issues/39)
-- [ ] TODO 🥳 []()
+- [ ] TODO 🥳 [一起搭建一个微信小程序](https://github.com/kiki1027/memos/issues/42)
 - [ ] TODO 🥳 []()
 - [ ] TODO 🥳 []()
 
