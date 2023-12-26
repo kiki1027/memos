@@ -4,15 +4,14 @@
  * @return {number[]}
  */
 var topKFrequent = function (nums, k) {
-  const map = new Map()
+  const map = new Map();
   nums.forEach((n) => {
-    map.set(n, map.has(n) ? map.get(n) + 1 : 1)
-  })
-
-  const res = new MinHeap()
+    map.set(n, map.has(n) ? map.get(n) + 1 : 1);
+  });
+  const res = new MinHeap();
   map.forEach((value, key) => {
     // 插入并建堆完成
-    res.insert({ value, key })
+    res.insert({ value, key });
     /**
      * 如果当前堆节点数量已经大于K
      * 我们可以直接将根节点推出
@@ -20,12 +19,12 @@ var topKFrequent = function (nums, k) {
      * 最后无痛输出就行
      */
     if (res.size() > k) {
-      res.shift()
+      res.shift();
     }
-  })
+  });
 
-  return res.heap.map((e) => e.key)
-}
+  return res.heap.map((e) => e.key);
+};
 
 /**
  * ❗️❗️一个重点
@@ -34,49 +33,54 @@ var topKFrequent = function (nums, k) {
  */
 class MinHeap {
   constructor() {
-    this.heap = []
+    this.heap = [];
   }
   size() {
-    return this.heap.length
+    return this.heap.length;
   }
   insert(obj) {
-    this.heap.push(obj)
-    this.heapifyUp(this.heap.length - 1)
+    this.heap.push(obj);
+    this.heapifyUp(this.heap.length - 1);
   }
   shift() {
-    this.heap[0] = this.heap.pop()
-    this.heapifyDown(0, this.heap.length)
+    this.heap[0] = this.heap.pop();
+    this.heapifyDown(0, this.heap.length);
   }
   swap(a, b) {
-    const t = this.heap[a]
-    this.heap[a] = this.heap[b]
-    this.heap[b] = t
+    const t = this.heap[a];
+    this.heap[a] = this.heap[b];
+    this.heap[b] = t;
   }
   heapifyUp(currIndex) {
-    if (!currIndex) return
-    const parentIndex = Math.floor((currIndex - 1) / 2)
+    if (!currIndex) return;
+    const parentIndex = Math.floor((currIndex - 1) / 2);
     if (this.heap[parentIndex].value > this.heap[currIndex].value) {
-      this.swap(currIndex, parentIndex)
+      this.swap(currIndex, parentIndex);
       // 一直向上检查交换
-      this.heapifyUp(parentIndex)
+      this.heapifyUp(parentIndex);
     }
   }
   heapifyDown(index, len) {
-    let leftIndex = index * 2 + 1
-    let rightIndex = index * 2 + 2
+    let leftIndex = index * 2 + 1;
+    let rightIndex = index * 2 + 2;
+    let minIndex = index;
+
     if (
       leftIndex < len &&
-      this.heap[leftIndex].value < this.heap[index].value
+      this.heap[leftIndex].value < this.heap[minIndex].value
     ) {
-      this.swap(leftIndex, index)
-      this.heapifyDown(leftIndex, len)
+      minIndex = leftIndex;
     }
     if (
       rightIndex < len &&
-      this.heap[rightIndex].value < this.heap[index].value
+      this.heap[rightIndex].value < this.heap[minIndex].value
     ) {
-      this.swap(rightIndex, index)
-      this.heapifyDown(rightIndex, len)
+      minIndex = rightIndex;
+    }
+
+    if (minIndex !== index) {
+      this.swap(minIndex, index);
+      this.heapifyDown(minIndex, len);
     }
   }
 }
