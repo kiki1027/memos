@@ -1,7 +1,11 @@
 var MedianFinder = function () {
-  this.heap = [];
-  this.minHeap = [];
-  this.maxHeap = [];
+  /**
+   * 维护两个堆，small、large
+   * small存放较小的数字，大顶堆 => 根节点则是较小的数字里最大的一个
+   * large存放较大的数字，小顶堆 => 根节点则是较大的数字里最小的一个
+   */
+  this.small = [];
+  this.large = [];
 };
 
 /**
@@ -9,94 +13,143 @@ var MedianFinder = function () {
  * @return {void}
  */
 MedianFinder.prototype.addNum = function (num) {
-  // 原始
-  this.heap.push(num);
-  // 小顶堆
-  this.minHeap.push(num);
-  // 大顶堆
-  this.maxHeap.push(num);
-  // 小顶堆插入新元素
-  this.minHeapifyUp(this.minHeap.length - 1);
-  // 大顶堆插入新元素
-  this.maxHeapifyUp(this.maxHeap.length - 1);
+  /**
+   * 默认我们把新数字插入到small中
+   * 如果奇数个
+   * 中间值就是大顶堆的根节点
+   * 如果偶数个
+   * 中间值就是(小值但大顶堆的根节点+大值但小顶堆的根节点)/2
+   */
+  this.small.push(num);
+  // 大顶堆 插入新数字
+  this.heapifyUp(this.small, this.small.length - 1, (a, b) => a > b);
+  /**
+   * small中的值要比large中的值都小
+   * 若出现不满足条件的，则将该值推入large中
+   * 对应的两个堆都需要重新堆化一下
+   */
+  if (this.small[0] > this.large[0]) {
+    this.large.push(this.small[0]);
+    /**
+     * 新增元素，从下到上堆化
+     * 小顶堆 parent<child
+     */
+    this.heapifyUp(this.large, this.large.length - 1, (a, b) => a < b);
+    this.small[0] = this.small.pop();
+    /**
+     * 删除元素，从上到下堆化
+     * 大顶堆 parent>child
+     */
+    this.heapifyDown(this.small, 0, this.small.length, (a, b) => a > b);
+  }
+  // 新数字入堆之后，检查small和large是否平衡
+  const smallLen = this.small.length;
+  const largeLen = this.large.length;
+  if (smallLen > largeLen + 1) {
+    this.large.push(this.small[0]);
+    /**
+     * 新增元素，从下到上堆化
+     * 小顶堆 parent<child
+     */
+    this.heapifyUp(this.large, this.large.length - 1, (a, b) => a < b);
+    this.small[0] = this.small.pop();
+    /**
+     * 删除元素，从上到下堆化
+     * 大顶堆 parent>child
+     */
+    this.heapifyDown(this.small, 0, this.small.length, (a, b) => a > b);
+  }
+  if (largeLen > smallLen + 1) {
+    this.small.push(this.large[0]);
+    /**
+     * 新增元素，从下到上堆化
+     * 大顶堆 parent>child
+     */
+    this.heapifyUp(this.small, this.small.length - 1, (a, b) => a > b);
+    this.large[0] = this.large.pop();
+    /**
+     * 删除元素，从上到下堆化
+     * 小顶堆 parent<child
+     */
+    this.heapifyDown(this.large, 0, this.large.length, (a, b) => a < b);
+  }
 };
 MedianFinder.prototype.swap = function (arr, a, b) {
   const t = arr[a];
   arr[a] = arr[b];
   arr[b] = t;
 };
-MedianFinder.prototype.minHeapifyUp = function (index) {
-  if (index <= 0) return;
-  const parentIndex = Math.floor(index / 2);
-  if (this.minHeap[index] < this.minHeap[parentIndex]) {
-    this.swap(this.minHeap, index, parentIndex);
-    this.minHeapifyUp(parentIndex);
-  }
-};
-MedianFinder.prototype.maxHeapifyUp = function (index) {
+MedianFinder.prototype.heapifyUp = function (arr, index, comparator) {
   if (index === 0) return;
-  const parentIndex = Math.floor(index / 2);
-  if (this.maxHeap[index] > this.maxHeap[parentIndex]) {
-    this.swap(this.maxHeap, index, parentIndex);
-    this.maxHeapifyUp(parentIndex);
+  let parentIndex = Math.floor((index - 1) / 2);
+  if (!comparator(arr[parentIndex], arr[index])) {
+    this.swap(arr, parentIndex, index);
+    this.heapifyUp(arr, parentIndex, comparator);
   }
 };
-
 MedianFinder.prototype.heapifyDown = function (arr, index, len, comparator) {
   let leftIndex = index * 2 + 1;
   let rightIndex = index * 2 + 2;
-  let parentIndex = index;
-  if (leftIndex < len && comparator(arr[leftIndex], arr[parentIndex])) {
-    parentIndex = leftIndex;
+  let findIndex = index;
+
+  if (leftIndex < len && !comparator(arr[findIndex], arr[leftIndex])) {
+    findIndex = leftIndex;
   }
-  if (rightIndex < len && comparator(arr[rightIndex], arr[parentIndex])) {
-    parentIndex = rightIndex;
+  if (rightIndex < len && !comparator(arr[findIndex], arr[rightIndex])) {
+    findIndex = rightIndex;
   }
-  if (parentIndex !== index) {
-    this.swap(arr, parentIndex, index);
-    this.heapifyDown(arr, parentIndex, len, comparator);
+  if (findIndex !== index) {
+    this.swap(arr, findIndex, index);
+    this.heapifyDown(arr, findIndex, len, comparator);
   }
-};
-MedianFinder.prototype.minHeapify = function (arr) {
-  /**
-   * a=子节点，b=父节点
-   * 子节点>父节点，则正常，反之需要交换
-   * 这里按照需要交换的条件写
-   * 即需要交换返回1，不需要返回0
-   */
-  this.heapifyDown(arr, 0, arr.length, (a, b) => (a > b ? 0 : 1));
-};
-MedianFinder.prototype.maxHeapify = function (arr) {
-  /**
-   * a=子节点，b=父节点
-   * 子节点>父节点，则需要交换
-   */
-  this.heapifyDown(arr, 0, arr.length, (a, b) => (a > b ? 1 : 0));
 };
 /**
  * @return {number}
  */
 MedianFinder.prototype.findMedian = function () {
-  const len = this.heap.length % 2 ? 1 : 2;
-  let count = this.heap.length - len;
-  let minHeap = [...this.minHeap];
-  let maxHeap = [...this.maxHeap];
-  while (count > 0) {
-    minHeap[0] = minHeap.pop();
-    maxHeap[0] = maxHeap.pop();
-    this.minHeapify(minHeap);
-    this.maxHeapify(maxHeap);
-    count -= 2;
+  if (this.small.length > this.large.length) {
+    return this.small[0];
   }
-  /**
-   * 利用 大顶堆 小顶堆，每次shift根节点，及重新堆化
-   * 推出节点数量达到目标数量后，当前大小顶堆的根节点则是中间值
-   */
-  return (minHeap[0] + maxHeap[0]) / 2;
+  if (this.large.length > this.small.length) {
+    return this.large[0];
+  }
+  return (this.small[0] + this.large[0]) / 2;
 };
-let a = new MedianFinder();
-const arr = [6, 10, 2, 6, 5, 0, 6, 3, 1, 0];
-arr.forEach((e) => {
-  a.addNum(e);
-});
-console.log(a.findMedian());
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * var obj = new MedianFinder()
+ * obj.addNum(num)
+ * var param_2 = obj.findMedian()
+ */
+
+const obj = new MedianFinder();
+// [26],[],[6],[],[8],[],[2],[],[14],[],[25],[],[25],[],[4],[],[33],[],[18],[],[10],[],[14],[],[27],[],[3],[],[35],[],[13],[],[24],[],[27],[],[14],[],[5],[],[0],[],[38],[],[19],[],[25],[],[11],[],[14],[],[31],[],[30],[],[11],[],[31],[],[0],[]]
+obj.addNum(40);
+// console.log(obj.findMedian());
+obj.addNum(12);
+// console.log(obj.findMedian());
+obj.addNum(16);
+// console.log(obj.findMedian());
+obj.addNum(14);
+// console.log(obj.findMedian());
+obj.addNum(35);
+// console.log(obj.findMedian());
+obj.addNum(19);
+// console.log(obj.findMedian());
+obj.addNum(34);
+// console.log(obj.findMedian());
+obj.addNum(35);
+// console.log(obj.findMedian());
+obj.addNum(28);
+console.log(obj.findMedian());
+obj.addNum(35);
+console.log(obj.findMedian());
+obj.addNum(26);
+console.log(obj.findMedian());
+obj.addNum(6);
+console.log(obj.findMedian());
+obj.addNum(8);
+console.log(obj.findMedian());
+obj.addNum(2);
+console.log(obj.findMedian());
