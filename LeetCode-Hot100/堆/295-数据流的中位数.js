@@ -81,6 +81,11 @@ MedianFinder.prototype.swap = function (arr, a, b) {
 };
 MedianFinder.prototype.heapifyUp = function (arr, index, comparator) {
   if (index === 0) return;
+  /**
+   * child=1,2,parent=0
+   * child=3,4,parent=1
+   * child=5,6,parent=2
+   */
   let parentIndex = Math.floor((index - 1) / 2);
   if (!comparator(arr[parentIndex], arr[index])) {
     this.swap(arr, parentIndex, index);
